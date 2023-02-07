@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InicioActivity">
+    tools:context=".InicioActivity"
+    >
 
     <EditText
         android:id="@+id/txtNombreInicio"
@@ -13,6 +14,8 @@
         android:ems="10"
         android:hint="Mario Ortiz"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gris"
         app:layout_constraintBottom_toTopOf="@+id/btnIniciar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
@@ -25,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/txtNombreInicio"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +40,11 @@
     <Button
         android:id="@+id/btnIniciar"
         android:layout_width="0dp"
+        app:backgroundTint="@null"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/layout_bground"
         android:text="Iniciar conversación"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +60,8 @@
         android:ems="10"
         android:hint="Dirección IP"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gris"
         app:layout_constraintBottom_toTopOf="@+id/btnIniciar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -64,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Host"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/txtHost"
         app:layout_constraintEnd_toEndOf="parent"

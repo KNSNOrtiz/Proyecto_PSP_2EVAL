@@ -1,21 +1,23 @@
 package com.example.mensajeriasockets.io;
 
+import android.media.MediaSession2Service;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor {
-    public ServerSocket serverSocket;
-    private Socket clienteSocket;
-    private final int PUERTO = 1234;
-    public boolean finConexion = false;
+    public ServerSocket serverSocket;   //  Socket servidor, a este se conectarán los socket cliente.
+    private Socket clienteSocket;       //  Cliente cuya petición de conexión ha sido aceptada por el socket servidor.
+    private final int PUERTO = 1234;    //  Puerto ocupado por el serverSocket.
+    public boolean finConexion = false; //  Semáforo que determina si el serverSocket debe seguir escuchando peticiones o no.
 
-    private Mensaje mensajeEntrante;
+    private Mensaje mensajeEntrante;    //  Mensaje leído por el servidor.
 
-    private ObjectInputStream flujoEntrada;
+    private ObjectInputStream flujoEntrada; //  Flujo de entrada de objetos que el servidor obtiene del cliente.
 
     public Servidor(){
         try {
@@ -29,14 +31,18 @@ public class Servidor {
     public Mensaje getMensajeEntrante(){
         return mensajeEntrante;
     }
-
+    //  Método que estará ejecutándose de forma constante en el ChatActivity para recibir los mensajes entrantes.
     public void RecibirMensaje(){
         try {
             if (serverSocket!=null) {
+                //  El serverSocket se pone en escucha y espera una petición.
                 clienteSocket = serverSocket.accept();
+                // Tras aceptarla, obtiene el flujo de entrada del cliente, para poder extraer los paquetes.
                 flujoEntrada = new ObjectInputStream(clienteSocket.getInputStream());
+                //  Se deserializa el paquete y se obtiene la información.
                 mensajeEntrante = (Mensaje) flujoEntrada.readObject();
-                Log.d("SERVIDOR", "Mensaje obtenido: " + mensajeEntrante.getMensaje());
+                //  Se altera el paquete para indicar que es enviado de vuelta por el servidor.
+                mensajeEntrante.setTipo(Mensaje.MSG_ENTRADA);
                 flujoEntrada.close();
                 clienteSocket.close();
             }

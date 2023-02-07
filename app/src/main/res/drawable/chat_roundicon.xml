@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#eeffffff"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ico_chat"
+        android:bottom="250dp"
+        android:left="225dp"
+        android:right="225dp"
+        android:top="250dp"/>
+</layer-list>
